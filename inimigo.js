@@ -1,12 +1,12 @@
 function inimigo(tipo) {
-    console.log(tipo)
+    console.log("inimigo",tipo)
 
     if (tipo == "1") {
-        this.alturaInimigo = pixel * 6
-        this.larguraInimigo = pixel * 3
-        this.hp = 750
+        this.alturaInimigo = pixel * 5
+        this.larguraInimigo = pixel * 2
+        this.hp = 100
         this.dano = 10
-        this.speed = 5
+        this.speed = 15
         this.x = canvas.width - (100 + pixel * 3)
         this.y = (canvas.height - pixel * 6) / 2
         if(this.hp>0){

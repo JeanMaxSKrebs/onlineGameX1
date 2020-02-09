@@ -1,9 +1,8 @@
 function limpaImprimeVerifica(){
     /* Limpa a tela */
     contexto.clearRect(0, 0, canvas.width, canvas.height)
-    contexto.save()
-
-    
+    contexto.restore()
+    canvas.style.backgroundColor = "green"
     
     /* Desenha o Personagem */
     if(!Personagem.verificaMorte()&&!Inimigo.verificaMorte())
@@ -16,7 +15,14 @@ function limpaImprimeVerifica(){
         /*Verifica colisao com a borda */
         Personagem.verificaColisaoBorda()
         Inimigo.verificaColisaoBorda()
+
         Personagem.colisaoProjetilBorda()
+        /* Verifica colisao com inimigos */
+        if(Personagem.colisaoProjetilInimigo())
+        {
+            /* Roubo de hp */
+            Personagem.rouboHP()
+        }
         
         /* Verifica colisao com paredes */
         

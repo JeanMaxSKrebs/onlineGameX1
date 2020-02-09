@@ -2,7 +2,7 @@
 // console.log(inimigo(tipo))
 
 function personagem(tipo) {
-    console.log(tipo)
+    console.log("personagem",tipo)
 
     if (tipo == "1") {
         /*posição do personagem*/
@@ -11,10 +11,11 @@ function personagem(tipo) {
         /* aspectos fisicos */
         this.width = 32 * 2
         this.height = 32 * 2
-        this.hp = 1000
-        this.hpMaximo = 1000
+        this.hp = 100
+        this.hpMaximo = 100
         this.lifeSteal = 10
-        this.speed = 7
+        this.lifeSteal = 0
+        this.speed = 10
         this.dano = 10
         this.larguraPersonagem = pixel
         this.alturaPersonagem = pixel * 2
@@ -22,6 +23,7 @@ function personagem(tipo) {
         this.projetil = []
         this.larguraProjetil = pixel/3
         this.alturaProjetil = pixel/3
+        this.reducaoVelocidade = 1.3
     }
     if (tipo == "2") {
         /*posição do personagem*/
@@ -98,37 +100,31 @@ function personagem(tipo) {
         }
         if(atirar)
         {
-            this.meioX = this.x+this.larguraPersonagem/2
-            this.meioY = this.y+this.alturaPersonagem/2
-            
-            this.projetil.push({x: this.x + (this.larguraPersonagem/2) - (this.larguraProjetil/2),
-                                y: this.y + (this.alturaPersonagem/2) - (this.alturaProjetil/2)})
-                                console.log(this.projetil)
+            if(this.projetil.length<=20)
+            {
+                this.meioX = this.x+this.larguraPersonagem/2
+                this.meioY = this.y+this.alturaPersonagem/2          
+
+                this.projetil.push({x: this.x + (this.larguraPersonagem/2) - (this.larguraProjetil/2),
+                    y: this.y + (this.alturaPersonagem/2) - (this.alturaProjetil/2)})
+            }
         }
         if(moveEsquerda && atirar)
         {
-            this.x = this.x + this.speed/1.3
-
-            this.projetil.push()
+            this.x = this.x + this.speed/this.reducaoVelocidade
         }
         if(moveDireita && atirar)
         {
-            this.x = this.x - this.speed/1.3
-
-            this.projetil.push()
+            this.x = this.x - this.speed/this.reducaoVelocidade
         }
         if(moveCima && atirar)
         {
-            this.y = this.y + this.speed/1.3
-
-            this.projetil.push()
+            this.y = this.y + this.speed/this.reducaoVelocidade
         }
 
         if(moveBaixo && atirar)
         {
-            this.y = this.y - this.speed/1.3
-
-            this.projetil.push()
+            this.y = this.y - this.speed/this.reducaoVelocidade
         }
     }
     this.desenha = function() {
@@ -197,6 +193,7 @@ function personagem(tipo) {
             this.hp = this.hp + (this.dano*this.lifeSteal/100)
         }
     }
+
     this.desenhaProjetil = function() {
         for(var i = 0 ; i < this.projetil.length ; i++ ) {
             contexto.restore()
@@ -218,9 +215,24 @@ function personagem(tipo) {
         {
             if(this.projetil[i].x > canvas.width - this.larguraProjetil)
             {
-                this.projetil[i].x = this.projetil[i].x - this.speed
-                console.log(this.projetil[i].x)
-                // this.projetil.x[i].x.shift()
+                this.projetil.shift()
+            }
+        }
+    }
+    this.colisaoProjetilInimigo = function() {
+        for(var i = 0 ; i < this.projetil.length ; i++ )
+        {
+            if(this.projetil[i].x < Inimigo.x + Inimigo.larguraInimigo &&
+               this.projetil[i].x + this.larguraProjetil > Inimigo.x &&
+               this.projetil[i].y < Inimigo.y + Inimigo.alturaInimigo &&
+               this.projetil[i].y + this. alturaProjetil > Inimigo.y)
+            {
+                this.projetil.shift()
+                Inimigo.hp = Inimigo.hp - Personagem.dano                
+                return true
+            }
+            else{
+                return false
             }
         }
     }
