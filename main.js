@@ -1,27 +1,23 @@
-let principal = "1"
-// let principal = "2"
-let Personagem = new personagem(principal)
 
-let movesInimigo = 4
-let outro = "1"
-let Inimigo = new inimigo(outro)
-let contador = 0
-let contador1 = 0
+const Player1 = new personagem(100, (canvas.height - pixel * 2) / 2, true)
+
+const Player2 = new personagem(canvas.width - 100, (canvas.height - pixel * 2) / 2, false)
+
+const ControlerPlayer1 = new controle(Player1, 38, 40, 37, 39, 32)
+
+const ControlerPlayer2 = new controle(Player2, 87, 83, 65, 68, 13)
 
 async function loop() {
     limpaImprimeVerifica()
-    // console.log(Personagem.projetil[0])
 
-    if(contador==10)
-    {
-        Inimigo.move(movesInimigo)
-        contador=1
-    }
-    Personagem.move()
-    
-    Personagem.moveProjetil()
+    ControlerPlayer1.move()
 
-    contador++
+    ControlerPlayer2.move()
+
+    Player1.moveProjetil()
+
+    Player2.moveProjetil()
+
     requestAnimationFrame(loop)
 }
 

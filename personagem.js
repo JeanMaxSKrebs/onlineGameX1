@@ -1,13 +1,14 @@
 // console.log(personagem(tipo))
 // console.log(inimigo(tipo))
 
-function personagem(tipo) {
-    console.log("personagem",tipo)
+function personagem(x, y, estaEsquerda) {
+    console.log("personagem esta a esquerda?", estaEsquerda)
 
-    if (tipo == "1") {
-        /*posição do personagem*/
-        this.x = 100
-        this.y = (canvas.height - pixel * 2) / 2
+
+    /* fica no servidor */
+        /* posição */
+        this.x = x
+        this.y = y
         /* aspectos fisicos */
         this.width = 32 * 2
         this.height = 32 * 2
@@ -24,109 +25,16 @@ function personagem(tipo) {
         this.larguraProjetil = pixel/3
         this.alturaProjetil = pixel/3
         this.reducaoVelocidade = 1.3
-    }
-    if (tipo == "2") {
-        /*posição do personagem*/
-        this.x = 300
-        this.y = (canvas.height - pixel * 2) / 2
-        /* aspectos fisicos */
-        this.width = 32 * 3
-        this.height = 32 * 2
-        this.hp = 200
-        this.hpMaximo = 200
-        this.regeneracao = 1
-        this.speed = 4
-        this.dano = 20
-        this.larguraPersonagem = pixel
-        this.alturaPersonagem = pixel * 2
-
-    }
 
     // console.log(this.width)
 
-    this.comecaMovimento = function (e) {
-        var key = e.keyCode;
-        if (key === LEFT && key !== RIGHT) {
-            moveEsquerda = true
-        }
-        if (key === RIGHT && key !== LEFT) {
-            moveDireita = true
-        }
-        if (key === UP && key !== DOWN) {
-            moveCima = true
-        }
-        if (key === DOWN && key !== UP) {
-            moveBaixo = true
-        }
-        if (key === ESPACO)
-        {
-            atirar = true
-        }
-    }
 
-    this.paraMovimento = function (e) {
-        var key = e.keyCode;
-        if (key === LEFT && key !== RIGHT) {
-            moveEsquerda = false;
-        }
-        if (key === RIGHT && key !== LEFT) {
-            moveDireita = false;
-        }
-        if (key === UP && key !== DOWN) {
-            moveCima = false;
-        }
-        if (key === DOWN && key !== UP) {
-            moveBaixo = false;
-        }
-        if (key === ESPACO)
-        {
-            atirar = false
-        }
-    }
-    window.addEventListener("keydown", this.comecaMovimento);
-    window.addEventListener("keyup", this.paraMovimento);
-    this.move = function () {
-        if (moveEsquerda) {
-            this.x = this.x - this.speed;
-        }
-        if (moveDireita) {
-            this.x = this.x + this.speed;
-        }
-        if (moveCima) {
-            this.y = this.y - this.speed;
-        }
-        if (moveBaixo) {
-            this.y = this.y + this.speed;
-        }
-        if(atirar)
-        {
-            if(this.projetil.length<=20)
-            {
-                this.meioX = this.x+this.larguraPersonagem/2
-                this.meioY = this.y+this.alturaPersonagem/2          
 
-                this.projetil.push({x: this.x + (this.larguraPersonagem/2) - (this.larguraProjetil/2),
-                    y: this.y + (this.alturaPersonagem/2) - (this.alturaProjetil/2)})
-            }
-        }
-        if(moveEsquerda && atirar)
-        {
-            this.x = this.x + this.speed/this.reducaoVelocidade
-        }
-        if(moveDireita && atirar)
-        {
-            this.x = this.x - this.speed/this.reducaoVelocidade
-        }
-        if(moveCima && atirar)
-        {
-            this.y = this.y + this.speed/this.reducaoVelocidade
-        }
-
-        if(moveBaixo && atirar)
-        {
-            this.y = this.y - this.speed/this.reducaoVelocidade
-        }
+    this.atualizarPosicao = function(x,y){
+        this.x = x
+        this.y = y
     }
+    
     this.desenha = function() {
             contexto.restore()
             contexto.fillStyle = "white"
@@ -163,7 +71,7 @@ function personagem(tipo) {
             this.y + this.alturaPersonagem > Inimigo.y) {
 
                 this.hp = this.hp - Inimigo.dano
-                Inimigo.hp = Inimigo.hp - Personagem.dano                
+                Inimigo.hp = Inimigo.hp - Player1.dano                
                 return true
             }
             else{
@@ -228,7 +136,7 @@ function personagem(tipo) {
                this.projetil[i].y + this. alturaProjetil > Inimigo.y)
             {
                 this.projetil.shift()
-                Inimigo.hp = Inimigo.hp - Personagem.dano                
+                Inimigo.hp = Inimigo.hp - Player1.dano                
                 return true
             }
             else{
