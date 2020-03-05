@@ -14,22 +14,6 @@ class controle {
         this.atirar = false;
         this.estaEsquerda = estaEsquerda
     }
-    // comecaAtirar(e) {
-    //     var key = e.keycode;
-    //     console.log("o")
-
-    //     if (key === this.TIRO) {
-    //         this.atirar = true
-    //     }
-    // }
-    // paraAtirar(e) {
-    //     var key = e.keycode;
-    //     console.log("i")
-
-    //     if (key === this.TIRO) {
-    //         this.atirar = false
-    //     }
-    // }
 
     comecaMovimento(e) {
         var key = e.keyCode;
@@ -73,7 +57,7 @@ class controle {
         let newX = this.personagem.x;
         let newY = this.personagem.y;
         let speed = this.personagem.speed;
-        let lowSpeed = speed / this.personagem.reducaoVelocidade;
+        let lowSpeed = speed / reducaoVelocidade;
 
         if (this.moveEsquerda && !this.atirar) {
             newX -= speed;
@@ -86,18 +70,6 @@ class controle {
         }
         if (this.moveBaixo && !this.atirar) {
             newY += speed;
-        }
-        if (this.atirar) {
-            if (this.personagem.projetil.length <= 20) {
-                this.personagem.meioX = this.x + this.personagem.larguraPersonagem / 2
-                this.personagem.meioY = this.y + this.personagem.alturaPersonagem / 2
-
-                this.personagem.projetil.push({
-                    x: this.personagem.x + (this.personagem.larguraPersonagem / 2) - (this.personagem.larguraProjetil / 2),
-                    y: this.personagem.y + (this.personagem.alturaPersonagem / 2) - (this.personagem.alturaProjetil / 2)
-                })
-                
-            }
         }
         if (this.moveEsquerda && this.atirar) {
             newX -= lowSpeed;
@@ -113,7 +85,24 @@ class controle {
             newY += lowSpeed;
         }
         this.personagem.atualizarPosicao(newX, newY)
-        this.personagem.moveProjetil(this.estaEsquerda)
+    }
+    atira() {
+        // console.log(this.personagem)
+        if (this.atirar) {
+            if (arrProjeteis.length <= this.personagem.qtdMaximaProjeteis) {
+                console.log(this.personagem.qtdMaximaProjeteis)
+                this.personagem.meioX = this.x + this.personagem.larguraPersonagem / 2
+                this.personagem.meioY = this.y + this.personagem.alturaPersonagem / 2
+
+                arrProjeteis.push({
+                    x: this.personagem.x + (this.personagem.larguraPersonagem / 2) - (larguraProjetil / 2),
+                    y: this.personagem.y + (this.personagem.alturaPersonagem / 2) - (alturaProjetil / 2),
+                    direcao: this.estaEsquerda
+                })
+
+            }
+        }
+
     }
 }
 
@@ -122,10 +111,10 @@ const Player1 = new personagem(100, (canvas.height - pixel * 2) / 2, true)
 const Player2 = new personagem(canvas.width - 100, (canvas.height - pixel * 2) / 2, false)
 
 const ControlerPlayer1 = new controle(Player1, 87, 83, 65, 68, 32, Player1.estaEsquerda)
-console.log(Player1.estaEsquerda)
+// console.log(Player1.estaEsquerda)
 
 const ControlerPlayer2 = new controle(Player2, 38, 40, 37, 39, 13, Player2.estaEsquerda)
-console.log(Player2.estaEsquerda)
+// console.log(Player2.estaEsquerda)
 
 function comecarMovimento(e) {
     ControlerPlayer1.comecaMovimento(e)
@@ -141,8 +130,11 @@ window.addEventListener("keyup", pararMovimento);
 
 
 async function loop() {
-    limpaImprimeVerifica()
-
+    limpa()
+    verifica()
+    ControlerPlayer1.atira()
+    ControlerPlayer2.atira()
+    moveProjetil()
     ControlerPlayer1.move()
     ControlerPlayer2.move()
 

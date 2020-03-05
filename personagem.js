@@ -21,44 +21,14 @@ function personagem(x, y, estaEsquerda) {
     this.dano = 10
     this.larguraPersonagem = pixel
     this.alturaPersonagem = pixel * 2
+
     /* projetil */
-    this.projetil = []
-    this.larguraProjetil = pixel / 3
-    this.alturaProjetil = pixel / 3
-    this.reducaoVelocidade = 1.3
-
+    this.qtdMaximaProjeteis = 10
     // console.log(this.width)
-
-    this.isShot = function(x,y){
-        this.hp--
-    }
-
 
     this.atualizarPosicao = function (x, y) {
         this.x = x
         this.y = y
-    }
-
-    this.desenhaProjetil = function () {
-        for (var i = 0; i < this.projetil.length; i++) {
-            contexto.restore()
-            contexto.fillStyle = "white"
-            contexto.fillRect(this.projetil[i].x, this.projetil[i].y, this.larguraProjetil, this.alturaProjetil)
-        }
-    }
-
-    this.moveProjetil = function (estaEsquerda) {
-        console.log(estaEsquerda)
-        if(estaEsquerda){
-            for (var i = 0; i < this.projetil.length; i++) {
-                this.projetil[i].x = this.projetil[i].x + this.speed
-            }
-        }else
-        {
-            for (var i = 0; i < this.projetil.length; i++) {
-                this.projetil[i].x = this.projetil[i].x - this.speed
-            }
-        }
     }
 
     this.desenha = function () {
@@ -100,7 +70,7 @@ function personagem(x, y, estaEsquerda) {
             return false
         }
     }
-    this.verificaMorte = function () {
+    this.isDead = function () {
         if (this.hp > 0) {
             this.status = "vivo"
             return false
@@ -120,30 +90,6 @@ function personagem(x, y, estaEsquerda) {
 
         if (this.hp < this.hpMaximo) {
             this.hp = this.hp + (this.dano * this.lifeSteal / 100)
-        }
-    }
-
-    this.colisaoProjetilBorda = function () {
-
-        for (var i = 0; i < this.projetil.length; i++) {
-            if (this.projetil[i].x > canvas.width - this.larguraProjetil || this.projetil[i].x <= 0) {
-                this.projetil.shift()
-            }
-        }
-    }
-    this.colisaoProjetilInimigo = function () {
-        for (var i = 0; i < this.projetil.length; i++) {
-            if (this.projetil[i].x < Inimigo.x + Inimigo.larguraInimigo &&
-                this.projetil[i].x + this.larguraProjetil > Inimigo.x &&
-                this.projetil[i].y < Inimigo.y + Inimigo.alturaInimigo &&
-                this.projetil[i].y + this.alturaProjetil > Inimigo.y) {
-                this.projetil.shift()
-                Inimigo.hp = Inimigo.hp - Player1.dano
-                return true
-            }
-            else {
-                return false
-            }
         }
     }
 }
