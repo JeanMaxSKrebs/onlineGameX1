@@ -9,7 +9,7 @@ const contexto = canvas.getContext('2d')
 canvas.style.position = "absolute"
 canvas.style.left = "25vw"
 canvas.style.top = "25vh"
-canvas.style.backgroundColor = "red"
+canvas.style.backgroundColor = "gray"
 
 canvas.height = altura*0.50
 canvas.width = largura*0.50

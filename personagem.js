@@ -29,6 +29,9 @@ function personagem(x, y, estaEsquerda) {
 
     // console.log(this.width)
 
+    this.isShot = function(x,y){
+        this.hp--
+    }
 
 
     this.atualizarPosicao = function (x, y) {
