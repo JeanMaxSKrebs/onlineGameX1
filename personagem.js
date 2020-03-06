@@ -23,12 +23,14 @@ function Personagem(x, y, estaEsquerda) {
     this.alturaPersonagem = pixel * 2
 
     /* projetil */
-    this.qtdMaximaProjeteis = 10
-    // console.log(this.width)
+    this.meioX = this.x + this.larguraPersonagem / 2
+    this.meioY = this.y + this.alturaPersonagem / 2    // console.log(this.width)
 
     this.atualizarPosicao = function (x, y) {
         this.x = x
         this.y = y
+         
+        this.arma.atualizarPosicao(this.meioX, this.meioY)
     }
 
     this.setArma = function (arma){

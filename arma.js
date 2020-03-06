@@ -1,10 +1,12 @@
 class Arma {
-    constructor(nome, qtdMunicao, tipo) {
+    constructor(nome, qtdMunicao, tipo, x, y) {
         this.nome = nome
         this.qtdMunicao = qtdMunicao
         this.projetil = tipo
         this.arrProjeteis = []
         this.recarregar()
+        this.x = x
+        this.y = y
     }
 
     copy(projetil) {
@@ -22,7 +24,7 @@ class Arma {
     }
 
     disparar() {
-        const index = this.obterIndexDeUmaMunicaoNaoDesparada();
+        const index = this.obterIndexDeUmaMunicaoNaoDisparada();
         if (index !== -1) {
             this.arrProjeteis[index].disparado = true
         } else {
@@ -30,10 +32,21 @@ class Arma {
             this.disparar()
         }
     }
+    atualizarPosicao(x, y) {
+        this.x = x
+        this.y = y
 
-    obterIndexDeUmaMunicaoNaoDesparada() {
+        // for (let i = 0; i < this.qtdMunicao; i++) {
+        //     if (this.arrProjeteis[i].disparado)
+        //         this.arrProjeteis[i].atualizarPosicao()
+        // }
+    }
+
+    obterIndexDeUmaMunicaoNaoDisparada() {
         return this.arrProjeteis.findIndex(x => !x.disparado);
     }
+
+
 
 }
 class Projetil {
