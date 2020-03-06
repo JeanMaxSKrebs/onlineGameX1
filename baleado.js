@@ -4,28 +4,23 @@ function isShot(personagem, posicaoProjeteis) {
 function posicaoProjeteis() {
 
 }
-function moveProjetil() {
+function moveProjetil(arrProjeteis) {
     for (var i = 0; i < arrProjeteis.length; i++) {
-        if (arrProjeteis[i].direcao) {
-            arrProjeteis[i].x = arrProjeteis[i].x + speedProjetil
-        } else {
-            arrProjeteis[i].x = arrProjeteis[i].x - speedProjetil
-        }
+        arrProjeteis[i].atualizarPosicao()
     }
 
 }
-function desenhaProjetil() {
+function desenhaProjetil(arrProjeteis) {
     for (var i = 0; i < arrProjeteis.length; i++) {
         contexto.restore()
         contexto.fillStyle = "white"
-        contexto.fillRect(arrProjeteis[i].x, arrProjeteis[i].y, larguraProjetil, alturaProjetil)
+        contexto.fillRect(arrProjeteis[i].x, arrProjeteis[i].y, arrProjeteis[i].larguraProjetil, arrProjeteis[i].alturaProjetil)
     }
 }
-function colisaoProjetilBorda() {
+function colisaoProjetilBorda(arrProjeteis) {
 
     for (var i = 0; i < arrProjeteis.length; i++) {
-        if (arrProjeteis[i].x > canvas.width - larguraProjetil || arrProjeteis[i].x <= 0) {
-            console.log(arrProjeteis)
+        if (arrProjeteis[i].x > canvas.width - arrProjeteis[i].larguraProjetil || arrProjeteis[i].x <= 0) {
             arrProjeteis.shift()
         }
     }

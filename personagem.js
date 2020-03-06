@@ -1,10 +1,10 @@
 // console.log(personagem(tipo))
 // console.log(inimigo(tipo))
 
-function personagem(x, y, estaEsquerda) {
+function Personagem(x, y, estaEsquerda) {
 
     console.log("personagem esta a esquerda?", estaEsquerda)
-
+    this.arma = {}
     this.estaEsquerda = estaEsquerda
     /* fica no servidor */
     /* posição */
@@ -31,6 +31,14 @@ function personagem(x, y, estaEsquerda) {
         this.y = y
     }
 
+    this.setArma = function (arma){
+        this.arma = arma
+    }
+
+    this.apertarGatilho = function(){
+        this.arma.disparar()
+    }
+    
     this.desenha = function () {
         contexto.restore()
         contexto.fillStyle = "white"

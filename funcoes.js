@@ -2,14 +2,16 @@ function verifica() {
     // isShot()
     if (!Player1.isDead() && !Player2.isDead()) {
 
-        desenhaProjetil()
+        desenhaProjetil(Player1.arma.arrProjeteis)
+        desenhaProjetil(Player2.arma.arrProjeteis)
         Player1.desenha()
         Player2.desenha()
 
         Player1.verificaColisaoBorda()
         Player2.verificaColisaoBorda()
-    
-        colisaoProjetilBorda()
+
+        colisaoProjetilBorda(Player1.arma.arrProjeteis)
+        colisaoProjetilBorda(Player2.arma.arrProjeteis)
     }
 }
 
