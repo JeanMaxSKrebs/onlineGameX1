@@ -1,5 +1,12 @@
 function verifica() {
     // isShot()
+
+    //tentrar verficar antes n deu
+    // let meioX = Player1.x + Player1.larguraPersonagem / 2 - Player1.arma.projetil.larguraProjetil / 2
+    // let meioY = Player1.y + Player1.alturaPersonagem / 2 - Player1.arma.projetil.alturaProjetil / 2
+
+    // Player1.arma.atualizarPosicao(meioX, meioY)
+
     if (!Player1.isDead() && !Player2.isDead()) {
 
         desenhaProjetil(Player1.arma.arrProjeteis)

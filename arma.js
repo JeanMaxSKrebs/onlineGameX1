@@ -5,8 +5,6 @@ class Arma {
         this.projetil = tipo
         this.arrProjeteis = []
         this.recarregar()
-        this.x = x
-        this.y = y
     }
 
     copy(projetil) {
@@ -18,6 +16,7 @@ class Arma {
     }
 
     recarregar() {
+        console.log("Oi")
         for (let i = 0; i < this.qtdMunicao; i++) {
             this.arrProjeteis.push(this.copy(this.projetil))
         }
@@ -33,13 +32,8 @@ class Arma {
         }
     }
     atualizarPosicao(x, y) {
-        this.x = x
-        this.y = y
-
-        // for (let i = 0; i < this.qtdMunicao; i++) {
-        //     if (this.arrProjeteis[i].disparado)
-        //         this.arrProjeteis[i].atualizarPosicao()
-        // }
+        this.projetil.x = x
+        this.projetil.y = y
     }
 
     obterIndexDeUmaMunicaoNaoDisparada() {

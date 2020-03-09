@@ -84,6 +84,7 @@ class Controle {
         if (this.moveBaixo && this.atirar) {
             newY += lowSpeed;
         }
+
         this.personagem.atualizarPosicao(newX, newY)
     }
     atira() {

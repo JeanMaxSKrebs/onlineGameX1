@@ -1,47 +1,44 @@
 // console.log(personagem(tipo))
 // console.log(inimigo(tipo))
 
-function Personagem(x, y, estaEsquerda) {
-
-    console.log("personagem esta a esquerda?", estaEsquerda)
-    this.arma = {}
-    this.estaEsquerda = estaEsquerda
-    /* fica no servidor */
-    /* posição */
-    this.x = x
-    this.y = y
-    /* aspectos fisicos */
-    this.width = 32 * 2
-    this.height = 32 * 2
-    this.hp = 100
-    this.hpMaximo = 100
-    this.lifeSteal = 10
-    this.lifeSteal = 0
-    this.speed = 10
-    this.dano = 10
-    this.larguraPersonagem = pixel
-    this.alturaPersonagem = pixel * 2
-
-    /* projetil */
-    this.meioX = this.x + this.larguraPersonagem / 2
-    this.meioY = this.y + this.alturaPersonagem / 2    // console.log(this.width)
-
-    this.atualizarPosicao = function (x, y) {
+class Personagem {
+    constructor(x, y, estaEsquerda) {
+        this.arma = {}
+        this.estaEsquerda = estaEsquerda
+        /* fica no servidor */
+        /* posição */
         this.x = x
         this.y = y
-         
-        this.arma.atualizarPosicao(this.meioX, this.meioY)
+        /* aspectos fisicos */
+        this.width = 32 * 2
+        this.height = 32 * 2
+        this.hp = 100
+        this.hpMaximo = 100
+        this.lifeSteal = 10
+        this.lifeSteal = 0
+        this.speed = 10
+        this.dano = 10
+        this.larguraPersonagem = pixel
+        this.alturaPersonagem = pixel * 2
+
+        /* projetil */
+        this.meioX = this.x + this.larguraPersonagem / 2
+        this.meioY = this.y + this.alturaPersonagem / 2
+    }
+    atualizarPosicao(x, y) {
+        this.x = x
+        this.y = y
     }
 
-    this.setArma = function (arma){
+    setArma(arma) {
         this.arma = arma
     }
 
-    this.apertarGatilho = function(){
+    apertarGatilho() {
         this.arma.disparar()
     }
-    
-    this.desenha = function () {
+
+    desenha() {
         contexto.restore()
         contexto.fillStyle = "white"
         contexto.fillRect(this.x, this.y, this.larguraPersonagem, this.alturaPersonagem)
@@ -52,7 +49,7 @@ function Personagem(x, y, estaEsquerda) {
         contexto.fillText("HP: " + this.hp, 70, 20)
         contexto.fillText("Dano: " + this.dano, 70, 40)
     }
-    this.verificaColisaoBorda = function () {
+    verificaColisaoBorda() {
         if (this.x <= 0) {
             this.x = this.x + this.speed
         }
@@ -66,7 +63,7 @@ function Personagem(x, y, estaEsquerda) {
             this.y = this.y - this.speed
         }
     }
-    this.verificaColisaoInimigo = function () {
+    verificaColisaoInimigo() {
         if (this.x < Inimigo.x + Inimigo.larguraInimigo &&
             this.x + this.larguraPersonagem > Inimigo.x &&
             this.y < Inimigo.y + Inimigo.alturaInimigo &&
@@ -80,7 +77,7 @@ function Personagem(x, y, estaEsquerda) {
             return false
         }
     }
-    this.isDead = function () {
+    isDead() {
         if (this.hp > 0) {
             this.status = "vivo"
             return false
@@ -96,7 +93,7 @@ function Personagem(x, y, estaEsquerda) {
             return true
         }
     }
-    this.rouboHP = function () {
+    rouboHP() {
 
         if (this.hp < this.hpMaximo) {
             this.hp = this.hp + (this.dano * this.lifeSteal / 100)
