@@ -34,6 +34,9 @@ class Arma {
     atualizarPosicao(x, y) {
         this.projetil.x = x
         this.projetil.y = y
+        for (let i = 0; i < this.qtdMunicao; i++) {
+            this.arrProjeteis[i].atualizarPosicao(x,y)
+        }
     }
 
     obterIndexDeUmaMunicaoNaoDisparada() {
@@ -52,14 +55,20 @@ class Projetil {
         this.larguraProjetil = larguraProjetil
         this.alturaProjetil = alturaProjetil
         this.disparado = false
+        this.i = 0;
     }
 
-    atualizarPosicao() {
+    movimentar() {
         if (this.disparado) {
             if (this.estaEsquerda)
                 this.x += this.speedProjetil
             else
                 this.x -= this.speedProjetil
         }
+    }
+
+    atualizarPosicao(x,y){
+        this.x = x - this.larguraProjetil / 2
+        this.y = y - this.alturaProjetil / 2
     }
 }

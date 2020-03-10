@@ -6,15 +6,17 @@ function posicaoProjeteis() {
 }
 function moveProjetil(arrProjeteis) {
     for (var i = 0; i < arrProjeteis.length; i++) {
-        arrProjeteis[i].atualizarPosicao()
+        arrProjeteis[i].movimentar()
     }
 
 }
 function desenhaProjetil(arrProjeteis) {
     for (var i = 0; i < arrProjeteis.length; i++) {
-        contexto.restore()
-        contexto.fillStyle = "white"
-        contexto.fillRect(arrProjeteis[i].x, arrProjeteis[i].y, arrProjeteis[i].larguraProjetil, arrProjeteis[i].alturaProjetil)
+        if(arrProjeteis[i].disparado){
+            contexto.restore()
+            contexto.fillStyle = "white"
+            contexto.fillRect(arrProjeteis[i].x, arrProjeteis[i].y, arrProjeteis[i].larguraProjetil, arrProjeteis[i].alturaProjetil)
+        }
     }
 }
 function colisaoProjetilBorda(arrProjeteis) {

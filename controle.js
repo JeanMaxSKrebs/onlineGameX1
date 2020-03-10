@@ -57,7 +57,7 @@ class Controle {
         let newX = this.personagem.x;
         let newY = this.personagem.y;
         let speed = this.personagem.speed;
-        let lowSpeed = speed / 1.5;
+        let lowSpeed = speed / 2;
 
         if (this.moveEsquerda && !this.atirar) {
             newX -= speed;
@@ -89,9 +89,8 @@ class Controle {
     }
     atira() {
         // console.log(this.personagem)
-        if(this.atirar)
-        {   
-            if (this.personagem.arma.qtdMunicao>0) {
+        if (this.atirar) {
+            if (this.personagem.arma.qtdMunicao > 0) {
                 this.personagem.apertarGatilho()
             }
         }

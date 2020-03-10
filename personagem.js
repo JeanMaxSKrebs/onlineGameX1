@@ -28,6 +28,12 @@ class Personagem {
     atualizarPosicao(x, y) {
         this.x = x
         this.y = y
+
+        //tentrar verficar antes n deu
+        const meioX = this.x + this.larguraPersonagem / 2
+        const meioY = this.y + this.alturaPersonagem / 2
+
+        this.arma.atualizarPosicao(meioX, meioY)
     }
 
     setArma(arma) {
