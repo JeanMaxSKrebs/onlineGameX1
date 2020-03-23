@@ -4,6 +4,8 @@ class Arma {
         this.qtdMunicao = qtdMunicao
         this.projetil = tipo
         this.arrProjeteis = []
+        this.x = x
+        this.y = y
         this.recarregar()
     }
 
@@ -16,26 +18,29 @@ class Arma {
     }
 
     recarregar() {
-        console.log("Oi")
-        for (let i = 0; i < this.qtdMunicao; i++) {
-            this.arrProjeteis.push(this.copy(this.projetil))
+        if (this.arrProjeteis.length <= this.qtdMunicao) {
+            for (let i = 0; i < this.qtdMunicao; i++) {
+                this.arrProjeteis.push(this.copy(this.projetil))
+            }
         }
     }
 
     disparar() {
         const index = this.obterIndexDeUmaMunicaoNaoDisparada();
-        if (index !== -1) {
+
+        if (index !== -1 || index > this.qtdMunicao) {
             this.arrProjeteis[index].disparado = true
         } else {
             this.recarregar()
-            this.disparar()
+            // this.disparar()
         }
     }
-    atualizarPosicao(x, y) {
+
+    atualizarPosicaoInicial(x, y) {
         this.projetil.x = x
         this.projetil.y = y
         for (let i = 0; i < this.qtdMunicao; i++) {
-            this.arrProjeteis[i].atualizarPosicao(x,y)
+            this.arrProjeteis[i].atualizarPosicaoInicial(x, y)
         }
     }
 
@@ -55,20 +60,33 @@ class Projetil {
         this.larguraProjetil = larguraProjetil
         this.alturaProjetil = alturaProjetil
         this.disparado = false
-        this.i = 0;
+    }
+    desenhar() {
+        contexto.fillStyle = "black"
+        contexto.fillRect(this.x - this.larguraProjetil / 2, this.y - this.alturaProjetil / 2, this.larguraProjetil, this.alturaProjetil)
+    }
+
+    estaDisparado() {
+        if (this.disparado) {
+            return true
+        } else
+            return false
     }
 
     movimentar() {
-        if (this.disparado) {
-            if (this.estaEsquerda)
-                this.x += this.speedProjetil
-            else
-                this.x -= this.speedProjetil
-        }
+        if (this.estaEsquerda)
+            this.x += this.speedProjetil
+        else
+            this.x -= this.speedProjetil
+
     }
 
-    atualizarPosicao(x,y){
+    atualizarPosicaoInicial(x, y) {
         this.x = x - this.larguraProjetil / 2
         this.y = y - this.alturaProjetil / 2
+    }
+
+    destruir() {
+        this.disparado = false
     }
 }

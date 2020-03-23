@@ -5,23 +5,24 @@ function verifica() {
 
     if (!Player1.isDead() && !Player2.isDead()) {
 
-        desenhaProjetil(Player1.arma.arrProjeteis)
-        desenhaProjetil(Player2.arma.arrProjeteis)
-        Player1.desenha()
-        Player2.desenha()
-
         Player1.verificaColisaoBorda()
         Player2.verificaColisaoBorda()
 
         colisaoProjetilBorda(Player1.arma.arrProjeteis)
         colisaoProjetilBorda(Player2.arma.arrProjeteis)
+
+        Player1.desenhar()
+        Player2.desenhar()
+        // Player1.arma.desenha()
+        // Player2.arma.desenha()
+        Player1.arma.projetil.desenhar()
+        Player2.arma.projetil.desenhar()
     }
 }
 
 function limpa() {
     /* Limpa a tela */
     contexto.clearRect(0, 0, canvas.width, canvas.height)
-    contexto.restore()
 }
 
 function getRandom(valor) {

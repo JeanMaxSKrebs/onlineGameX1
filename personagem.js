@@ -7,6 +7,7 @@ class Personagem {
         this.estaEsquerda = estaEsquerda
         /* fica no servidor */
         /* posição */
+        this.xInicial = x
         this.x = x
         this.y = y
         /* aspectos fisicos */
@@ -25,15 +26,14 @@ class Personagem {
         this.meioX = this.x + this.larguraPersonagem / 2
         this.meioY = this.y + this.alturaPersonagem / 2
     }
-    atualizarPosicao(x, y) {
+    movimentar(x, y) {
         this.x = x
         this.y = y
 
-        //tentrar verficar antes n deu
         const meioX = this.x + this.larguraPersonagem / 2
         const meioY = this.y + this.alturaPersonagem / 2
 
-        this.arma.atualizarPosicao(meioX, meioY)
+        this.arma.atualizarPosicaoInicial(meioX, meioY)
     }
 
     setArma(arma) {
@@ -44,16 +44,12 @@ class Personagem {
         this.arma.disparar()
     }
 
-    desenha() {
-        contexto.restore()
+    desenhar() {
         contexto.fillStyle = "white"
         contexto.fillRect(this.x, this.y, this.larguraPersonagem, this.alturaPersonagem)
-
-        contexto.restore()
         contexto.font = "20px Arial"
-        contexto.fillStyle = "white"
-        contexto.fillText("HP: " + this.hp, 70, 20)
-        contexto.fillText("Dano: " + this.dano, 70, 40)
+        contexto.fillText("HP: " + this.hp, this.xInicial - pixel, 20)
+        contexto.fillText("Dano: " + this.dano, this.xInicial - pixel, 40)
     }
     verificaColisaoBorda() {
         if (this.x <= 0) {

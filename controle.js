@@ -85,11 +85,15 @@ class Controle {
             newY += lowSpeed;
         }
 
-        this.personagem.atualizarPosicao(newX, newY)
+        this.personagem.movimentar(newX, newY)
     }
     atira() {
-        // console.log(this.personagem)
         if (this.atirar) {
+            // console.log(this.personagem.arma.projetil.x)
+            // console.log(this.personagem.arma.projetil.y)
+
+            // this.personagem.arma.atualizarPosicao(newX, newY)
+
             if (this.personagem.arma.qtdMunicao > 0) {
                 this.personagem.apertarGatilho()
             }
