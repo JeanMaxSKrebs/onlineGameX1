@@ -17,6 +17,16 @@ class Arma {
         return this.arrProjeteis;
     }
 
+    quantidadeProjeteisnoPente() {
+        let qtdProjeteis = 0
+        for (let i = 0; i < this.qtdMunicao; i++) {
+            if(this.arrProjeteis[i].disparado)
+                qtdProjeteis++
+        }
+        console.log(qtdProjeteis)
+        return qtdProjeteis
+    }
+
     recarregar() {
         if (this.arrProjeteis.length <= this.qtdMunicao) {
             for (let i = 0; i < this.qtdMunicao; i++) {
@@ -27,13 +37,10 @@ class Arma {
 
     disparar() {
         const index = this.obterIndexDeUmaMunicaoNaoDisparada();
+        console.log(index)
 
-        if (index !== -1 || index > this.qtdMunicao) {
+        if (index !== -1 || index > this.qtdMunicao)
             this.arrProjeteis[index].disparado = true
-        } else {
-            this.recarregar()
-            // this.disparar()
-        }
     }
 
     atualizarPosicaoInicial(x, y) {

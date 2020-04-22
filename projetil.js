@@ -15,6 +15,7 @@ class Projetil {
 
     estaDisparado() {
         if (this.disparado) {
+            console.log('true')
             return true
         } else
             return false
@@ -34,6 +35,7 @@ class Projetil {
     }
 
     destruir() {
+        console.log(this.x)
         this.disparado = false
     }
 }

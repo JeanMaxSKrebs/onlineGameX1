@@ -44,6 +44,10 @@ class Personagem {
         this.arma.disparar()
     }
 
+    recarregarArma(){
+        this.arma.recarregar()
+    }
+
     desenhar() {
         contexto.fillStyle = "white"
         contexto.fillRect(this.x, this.y, this.larguraPersonagem, this.alturaPersonagem)

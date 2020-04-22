@@ -30,20 +30,17 @@ async function loop() {
     verifica()
     ControlerPlayer1.atira()
     ControlerPlayer2.atira()
-
-    if (Player1.arma.projetil.estaDisparado()) {
+    
+    if(Player1.arma.projetil.estaDisparado())
         Player1.arma.projetil.movimentar()
-    }
 
-    if (Player2.arma.projetil.estaDisparado()) {
+    if(Player2.arma.projetil.estaDisparado())
         Player2.arma.projetil.movimentar()
-    }
-    moveProjetil(Player1.arma.arrProjeteis)
-    moveProjetil(Player2.arma.arrProjeteis)
+
     ControlerPlayer1.move()
     ControlerPlayer2.move()
 
-
+    // debugger
     requestAnimationFrame(loop)
 }
 

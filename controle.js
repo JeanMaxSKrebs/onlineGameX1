@@ -89,14 +89,10 @@ class Controle {
     }
     atira() {
         if (this.atirar) {
-            // console.log(this.personagem.arma.projetil.x)
-            // console.log(this.personagem.arma.projetil.y)
-
-            // this.personagem.arma.atualizarPosicao(newX, newY)
-
-            if (this.personagem.arma.qtdMunicao > 0) {
+            if (this.personagem.arma.quantidadeProjeteisnoPente() <= 0) {
+                this.personagem.recarregarArma()
+            } else
                 this.personagem.apertarGatilho()
-            }
         }
 
     }
