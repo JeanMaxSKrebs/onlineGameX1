@@ -7,6 +7,7 @@ class Projetil {
         this.larguraProjetil = larguraProjetil
         this.alturaProjetil = alturaProjetil
         this.disparado = false
+        this.destruir()
     }
     desenhar() {
         contexto.fillStyle = "black"
@@ -34,8 +35,25 @@ class Projetil {
         this.y = y - this.alturaProjetil / 2
     }
 
+    verificaColisaoBorda() {
+        if (this.x <= 0) {
+            console.log(this.x)
+            this.destruir()
+        }
+        if (this.x >= canvas.width - this.larguraProjetil) {
+            this.destruir()
+        }
+        if (this.y <= 0) {
+            this.destruir()
+        }
+        if (this.y >= canvas.height - this.alturaProjetil) {
+            this.destruir()
+        }
+        return;
+    }
+
     destruir() {
-        console.log(this.x)
+        console.log(this.x+" "+this.y)
         this.disparado = false
     }
 }

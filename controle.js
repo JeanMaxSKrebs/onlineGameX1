@@ -90,6 +90,7 @@ class Controle {
     atira() {
         if (this.atirar) {
             if (this.personagem.arma.quantidadeProjeteisnoPente() <= 0) {
+                // console.log("oi")
                 this.personagem.recarregarArma()
             } else
                 this.personagem.apertarGatilho()

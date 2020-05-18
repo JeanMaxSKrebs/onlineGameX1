@@ -7,11 +7,11 @@ const contexto = canvas.getContext('2d')
 // console.log(largura)
 /*definições canvas*/
 canvas.style.position = "absolute"
-canvas.style.left = "25vw"
-canvas.style.top = "25vh"
+canvas.style.left = "12.5vw"
+canvas.style.top = "12.5vh"
 canvas.style.backgroundColor = "gray"
 
-canvas.height = altura*0.50
-canvas.width = largura*0.50
+canvas.height = altura*0.75
+canvas.width = largura*0.75
 // console.log(canvas.height)
 // console.log(canvas.width)

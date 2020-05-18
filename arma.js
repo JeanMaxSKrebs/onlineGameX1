@@ -20,14 +20,15 @@ class Arma {
     quantidadeProjeteisnoPente() {
         let qtdProjeteis = 0
         for (let i = 0; i < this.qtdMunicao; i++) {
-            if(this.arrProjeteis[i].disparado)
+            if(!this.arrProjeteis[i].disparado)
                 qtdProjeteis++
         }
-        console.log(qtdProjeteis)
+        console.log("qtdProjeteis no pente: "+qtdProjeteis)
         return qtdProjeteis
     }
 
     recarregar() {
+        // console.log(this.arrProjeteis.length)
         if (this.arrProjeteis.length <= this.qtdMunicao) {
             for (let i = 0; i < this.qtdMunicao; i++) {
                 this.arrProjeteis.push(this.copy(this.projetil))
