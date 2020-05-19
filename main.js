@@ -31,16 +31,17 @@ async function loop() {
     ControlerPlayer1.atira()
     ControlerPlayer2.atira()
     
-    if(Player1.arma.projetil.estaDisparado())
-        Player1.arma.projetil.movimentar()
+    
+    Player1.arma.projetil.movimentar()
 
-    if(Player2.arma.projetil.estaDisparado())
-        Player2.arma.projetil.movimentar()
+    Player2.arma.projetil.movimentar()
 
+    console.log(Player1.arma.projetil)
+    
     ControlerPlayer1.move()
     ControlerPlayer2.move()
 
-    // debugger
+    debugger
     requestAnimationFrame(loop)
 }
 

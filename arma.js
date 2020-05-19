@@ -1,8 +1,8 @@
 class Arma {
-    constructor(nome, qtdMunicao, tipo, x, y) {
+    constructor(nome, qtdProjeteis, dados, x, y) {
         this.nome = nome
-        this.qtdMunicao = qtdMunicao
-        this.projetil = tipo
+        this.qtdProjeteis = qtdProjeteis
+        this.projetil = dados
         this.arrProjeteis = []
         this.x = x
         this.y = y
@@ -18,19 +18,18 @@ class Arma {
     }
 
     quantidadeProjeteisnoPente() {
-        let qtdProjeteis = 0
-        for (let i = 0; i < this.qtdMunicao; i++) {
+        let qtdProjeteisnoPente = 0
+        for (let i = 0; i < this.qtdProjeteis; i++) {
             if(!this.arrProjeteis[i].disparado)
-                qtdProjeteis++
+                qtdProjeteisnoPente++
         }
-        console.log("qtdProjeteis no pente: "+qtdProjeteis)
-        return qtdProjeteis
+        console.log("qtdProjeteis no pente: "+qtdProjeteisnoPente)
+        return qtdProjeteisnoPente
     }
 
     recarregar() {
-        // console.log(this.arrProjeteis.length)
-        if (this.arrProjeteis.length <= this.qtdMunicao) {
-            for (let i = 0; i < this.qtdMunicao; i++) {
+        if (this.arrProjeteis.length <= this.qtdProjeteis) {
+            for (let i = 0; i < this.qtdProjeteis; i++) {
                 this.arrProjeteis.push(this.copy(this.projetil))
             }
         }
@@ -38,7 +37,7 @@ class Arma {
 
     disparar() {
         const index = this.obterIndexDeUmaMunicaoNaoDisparada();
-        console.log(index)
+        console.log("     ultima munição disparada: "+index)
 
         if (index !== -1 || index > this.qtdMunicao)
             this.arrProjeteis[index].disparado = true

@@ -8,9 +8,8 @@ function verifica() {
         Player1.verificaColisaoBorda()
         Player2.verificaColisaoBorda()
 
-        console.log(Player1.arma.arrProjeteis.verificaColisaoBorda())
-        // .verificaColisaoBorda()
-        // Player2.arma.arrProjeteis.verificaColisaoBorda()
+        Player1.arma.projetil.verificaColisaoBorda()
+        Player2.arma.projetil.verificaColisaoBorda()
 
         Player1.desenhar()
         Player2.desenhar()
