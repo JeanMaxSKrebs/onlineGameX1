@@ -13,13 +13,18 @@ function verifica() {
 
         Player1.desenhar()
         Player2.desenhar()
-        // Player1.arma.desenha()
-        // Player2.arma.desenha()
+        Player1.arma.desenhar()
+        Player2.arma.desenhar()
         Player1.arma.projetil.desenhar()
         Player2.arma.projetil.desenhar()
     }
 }
-
+function moveProjetil(){
+    if(Player1.arma.projetil.disparado)
+        Player1.arma.projetil.movimentar()
+    if(Player2.arma.projetil.disparado)
+        Player2.arma.projetil.movimentar()
+}
 function limpa() {
     /* Limpa a tela */
     contexto.clearRect(0, 0, canvas.width, canvas.height)

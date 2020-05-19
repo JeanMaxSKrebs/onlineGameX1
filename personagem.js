@@ -54,6 +54,7 @@ class Personagem {
         contexto.font = "20px Arial"
         contexto.fillText("HP: " + this.hp, this.xInicial - pixel, 20)
         contexto.fillText("Dano: " + this.dano, this.xInicial - pixel, 40)
+        contexto.fillText("Balas: " + this.arma.quantidadeProjeteisnoPente(), this.xInicial - pixel, 60)
     }
     verificaColisaoBorda() {
         if (this.x <= 0) {

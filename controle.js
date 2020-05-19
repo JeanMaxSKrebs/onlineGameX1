@@ -1,18 +1,21 @@
 class Controle {
 
-    constructor(personagem, UP, DOWN, LEFT, RIGHT, TIRO, estaEsquerda) {
+    constructor(personagem, UP, DOWN, LEFT, RIGHT, TIRO, RECARREGA, estaEsquerda) {
         this.personagem = personagem
         this.UP = UP
         this.DOWN = DOWN
         this.LEFT = LEFT
         this.RIGHT = RIGHT
         this.TIRO = TIRO
+        this.RECARREGA = RECARREGA
         this.moveEsquerda = false;
         this.moveDireita = false;
         this.moveCima = false;
         this.moveBaixo = false;
         this.atirar = false;
+        this.recarregar = false;
         this.estaEsquerda = estaEsquerda
+
     }
 
     comecaAcao(e) {
@@ -33,6 +36,9 @@ class Controle {
         if (key === this.TIRO) {
             this.atirar = true
         }
+        if (key === this.RECARREGA) {
+            this.recarregar = true
+        }
     }
     paraAcao(e) {
         var key = e.keyCode;
@@ -51,6 +57,9 @@ class Controle {
         /* tiro */
         if (key === this.TIRO) {
             this.atirar = false
+        }
+        if (key === this.RECARREGA) {
+            this.recarregar = false
         }
     }
     move() {
@@ -87,13 +96,18 @@ class Controle {
 
         this.personagem.movimentar(newX, newY)
     }
+    recarrega() {
+        if (this.recarregar){
+            if (this.personagem.arma.quantidadeProjeteisnoPente() <= 0) {
+                this.personagem.recarregarArma()
+            }
+        }
+    }
     atira() {
         if (this.atirar) {
-            if (this.personagem.arma.quantidadeProjeteisnoPente() <= 0) {
-                // console.log("oi")
-                this.personagem.recarregarArma()
-            } else
+            if (this.personagem.arma.quantidadeProjeteisnoPente() > 0) {
                 this.personagem.apertarGatilho()
+            }
         }
 
     }
