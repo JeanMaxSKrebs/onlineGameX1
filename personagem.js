@@ -33,7 +33,7 @@ class Personagem {
         const meioX = this.x + this.larguraPersonagem / 2
         const meioY = this.y + this.alturaPersonagem / 2
 
-        this.arma.atualizarPosicaoInicial(meioX, meioY)
+        this.arma.atualizarPosicao(meioX, meioY)
     }
 
     setArma(arma) {

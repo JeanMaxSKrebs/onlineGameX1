@@ -32,7 +32,6 @@ async function loop() {
     ControlerPlayer2.atira()
     ControlerPlayer1.recarrega()
     ControlerPlayer2.recarrega()
-    moveProjetil()
 
     // debugger
     

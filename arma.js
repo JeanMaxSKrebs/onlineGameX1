@@ -8,7 +8,7 @@ class Arma {
         this.y = y
         this.alturaArma = altura
         this.larguraArma = largura
-
+        this.recarregar()
     }
 
     copy(projetil) {
@@ -44,19 +44,19 @@ class Arma {
         const index = this.obterIndexDeUmaMunicaoNaoDisparada();
         // console.log("     ultima munição disparada: "+index)
 
-        if (index !== -1 || index > this.qtdProjeteis)
-        {
+        if (index !== -1 || index > this.qtdProjeteis) {
             this.arrProjeteis[index].disparado = true
         }
     }
 
-    atualizarPosicaoInicial(x, y) {
+    atualizarPosicao(x, y) {
         this.x = x - this.larguraArma / 2
         this.y = y - this.alturaArma / 2
+
+
         for (let i = 0; i < this.qtdProjeteis; i++) {
-            if (this.arrProjeteis[i] !== undefined) {
-                this.arrProjeteis[i].atualizarPosicaoInicial(x, y)
-            }
+            this.projetil.atualizarPosicaoInicial(x, y)
+
         }
     }
 

@@ -93,7 +93,6 @@ class Controle {
         if (this.moveBaixo && this.atirar) {
             newY += lowSpeed;
         }
-
         this.personagem.movimentar(newX, newY)
     }
     recarrega() {
